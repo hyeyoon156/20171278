@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+//#include "SDL.h"
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -32,7 +33,7 @@ void Game::render()
 	m_destinationRectangle.h = m_sourceRectangle.h;
 
 	SDL_RenderClear(m_pRenderer);
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	SDL_RenderCopy(m_pRenderer, m_pTexture, NULL/*&m_sourceRectangle*/, &m_destinationRectangle);
 	SDL_RenderPresent(m_pRenderer);
 }
 
