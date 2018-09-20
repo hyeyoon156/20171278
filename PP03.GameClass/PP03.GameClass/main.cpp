@@ -7,10 +7,10 @@ int main(int argc, char* argv[])
 	g_game = new Game();
 	g_game->init("Chapter 1", 100, 100, 640, 480, false);
 
-	while (g_game->running())
+	while (g_game->running()/*m_bRunning*/)
 	{
 		g_game->handleEvents();
-		g_game->updatr();
+		g_game->update();
 		g_game->render();
 	}
 	g_game->clean();
