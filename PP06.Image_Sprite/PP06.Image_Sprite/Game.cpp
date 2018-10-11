@@ -31,6 +31,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		m_destinationRectangle.w = m_sourceRectangle.w;
 		m_destinationRectangle.h = m_sourceRectangle.h;
 
+		m_destinationRectangle2.x = m_sourceRectangle.x = 100;
+		m_destinationRectangle2.y = m_sourceRectangle.y = 0;
+		m_destinationRectangle2.w = m_sourceRectangle.w;
+		m_destinationRectangle2.h = m_sourceRectangle.h;
+
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
 		//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp"); //
@@ -47,18 +52,12 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::render()
 {
-	////m_sourceRectangle.x= 40;
-	////m_sourceRectangle.y = 40;
-	//m_destinationRectangle.x = m_sourceRectangle.x=0;
-	//m_destinationRectangle.y = m_sourceRectangle.y=0;
-	////m_sourceRectangle.w = 50; // 이미지 / m_destinationRectangle.w = 사각형
-	////m_sourceRectangle.h = 50;
-	//m_destinationRectangle.w = m_sourceRectangle.w; //d = s = 50
-	//m_destinationRectangle.h = m_sourceRectangle.h;
 
 	SDL_RenderClear(m_pRenderer);
 	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle2);
 	SDL_RenderPresent(m_pRenderer);
+
 }
 
 void Game::clean()
@@ -72,6 +71,11 @@ void Game::clean()
 void Game::update()
 {
 	m_sourceRectangle.x = 128 * int(((SDL_GetTicks() / 100) % 6));
+	m_destinationRectangle2.x += 0.1f;
+	if (m_destinationRectangle2.x >= 300.0f)
+	{
+		m_destinationRectangle2.x = 100.0f;
+	}
 }
 
 void Game::handleEvents()
