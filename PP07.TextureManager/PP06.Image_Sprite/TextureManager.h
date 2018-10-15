@@ -23,19 +23,19 @@ public:
 		SDL_Renderer* pRenderer,
 		SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-	//TextureManager() {}
+	TextureManager() {}
 
-	//static TextureManager* s_pInstance;
+	static TextureManager* s_pInstance;
 
-	//static TextureManager* Instance()
-	//{
-	//	if (s_pInstance == 0)
-	//	{
-	//		s_pInstance = new TextureManager();
-	//		return s_pInstance;
-	//	}
-	//	return s_pInstance;
-	//}
+	static TextureManager* Instance()
+	{
+		if (s_pInstance == 0)
+		{
+			s_pInstance = new TextureManager();
+			return s_pInstance;
+		}
+		return s_pInstance;
+	}
 
 private:
 
@@ -44,4 +44,4 @@ private:
 	//SDL_Renderer* m_pRenderer;
 	//bool m_bRunning;
 };
-//typedef TextureManager TheTextureManager;
+typedef TextureManager TheTextureManager;
