@@ -45,6 +45,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
+		m_go.load(100, 100, 128, 82, "animate");
+		m_player.load(300, 300, 128, 82, "animate");
+
 		//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp"); //
 		//m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface); //
 		//SDL_FreeSurface(pTempSurface); //
@@ -63,11 +66,14 @@ void Game::render()
 	//m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
 	//m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1,
 	//	m_currentFrame, m_pRenderer);
-	TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
-		m_pRenderer);
+	m_go.draw(m_pRenderer);
+	m_player.draw(m_pRenderer);
+	//TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
+	//	m_pRenderer);
 
-	TheTextureManager::Instance()->drawFrame("animate", 100, 100,
-		128, 82, 1, m_currentFrame, m_pRenderer);
+	//TheTextureManager::Instance()->drawFrame("animate", 100, 100,
+	//	128, 82, 1, m_currentFrame, m_pRenderer);
+
 	SDL_RenderPresent(m_pRenderer);
 	//SDL_RenderClear(m_pRenderer);
 	//SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
@@ -87,6 +93,8 @@ void Game::clean()
 void Game::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_go.update();
+	m_player.update();
 	/*m_sourceRectangle.x = 128 * int(((SDL_GetTicks() / 100) % 6));*/
 	//m_destinationRectangle2.x += 0.1f;
 	//if (m_destinationRectangle2.x >= 300.0f)
