@@ -1,8 +1,7 @@
-#pragma once
-//#include <SDL.h>
 #include "GameObject.h"
+#include <iostream>
 
-class Player : public GameObject
+class Enemy : public GameObject
 {
 public:
 	void load(int x, int y, int width, int height,

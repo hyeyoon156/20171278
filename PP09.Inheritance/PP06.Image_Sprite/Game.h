@@ -1,7 +1,9 @@
 #pragma once
 #include <SDL.h>
+#include <vector>
 #include "TextureManager.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "GameObject.h"
 
 
@@ -13,8 +15,12 @@ class Game
 	//SDL_Rect m_destinationRectangle2; // 대상 사각형
 	int m_currentFrame;
 	TextureManager m_textureManager;
-	GameObject m_go;
-	Player m_player;
+	/*GameObject m_go;
+	Player m_player;*/
+	GameObject* m_go;
+	GameObject* m_player;
+	GameObject* m_enemy;
+	std::vector<GameObject*> m_gameObjects;
 
 public:
 	Game() {}

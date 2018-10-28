@@ -2,6 +2,7 @@
 #include "Game.h"
 #include <SDL_image.h>
 #include "TextureManager.h"
+#include "LoaderParams.h"
 //#include "SDL.h"
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
@@ -20,11 +21,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		{
 			return false;
 		}
-
+		
 		//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
 		//SDL_Surface* pTempSurface = IMG_Load("assets/animate.png");
 		//SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
-		m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+		//m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
+		
+		//m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+		//m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
 
 		//m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer,
 		//	pTempSurface);
@@ -45,8 +49,20 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
-		m_go.load(100, 100, 128, 82, "animate");
-		m_player.load(300, 300, 128, 82, "animate");
+		m_go = new GameObject();
+		m_player = new Player();
+		m_enemy = new Enemy();
+
+		//m_go.load(100, 100, 128, 82, "animate");
+		//m_player.load(300, 300, 128, 82, "animate");
+
+		m_go->load(100, 100, 128, 82, "animate");
+		m_player->load(300, 300, 128, 82, "animate");
+		m_enemy->load(0, 0, 128, 82, "animate");
+
+		m_gameObjects.push_back(m_go);
+		m_gameObjects.push_back(m_player);
+		m_gameObjects.push_back(m_enemy);
 
 		//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/rider.bmp"); //
 		//m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface); //
@@ -66,8 +82,14 @@ void Game::render()
 	//m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
 	//m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1,
 	//	m_currentFrame, m_pRenderer);
-	m_go.draw(m_pRenderer);
-	m_player.draw(m_pRenderer);
+
+	//m_go.draw(m_pRenderer);  ??
+	//m_player.draw(m_pRenderer);  ??
+	for (std::vector<GameObject*>::size_type i = 0;
+		i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw(m_pRenderer);
+	}
 	//TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82,
 	//	m_pRenderer);
 
@@ -93,8 +115,13 @@ void Game::clean()
 void Game::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
-	m_go.update();
-	m_player.update();
+	/*m_go.update();
+	m_player.update();*/
+	for (std::vector<GameObject*>::size_type i = 0;
+		i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
 	/*m_sourceRectangle.x = 128 * int(((SDL_GetTicks() / 100) % 6));*/
 	//m_destinationRectangle2.x += 0.1f;
 	//if (m_destinationRectangle2.x >= 300.0f)
