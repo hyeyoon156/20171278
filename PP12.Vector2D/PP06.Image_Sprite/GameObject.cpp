@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "GameObject.h"
-//#include <SDL_image.h>
+#include <SDL_image.h>
 #include "TextureManager.h"
 
 void GameObject::load(int x, int y, int width, int height, std::string textureID)

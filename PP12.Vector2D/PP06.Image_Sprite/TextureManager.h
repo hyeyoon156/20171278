@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL.h>
 #include <map>
-//#include <iostream>
+#include <iostream>
+#include <string>
 
 class TextureManager
 {	
