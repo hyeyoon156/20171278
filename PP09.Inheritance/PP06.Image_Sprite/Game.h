@@ -2,8 +2,8 @@
 #include <SDL.h>
 #include <vector>
 #include "TextureManager.h"
-#include "Player.h"
-#include "Enemy.h"
+//#include "Player.h"
+//#include "Enemy.h"
 #include "GameObject.h"
 
 

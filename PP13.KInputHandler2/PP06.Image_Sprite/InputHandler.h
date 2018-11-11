@@ -1,8 +1,6 @@
 #pragma once
 #include "SDL.h"
 
-const Uint8* m_keystates;
-
 class InputHandler
 {
 public:
@@ -16,12 +14,12 @@ public:
 	void update();
 	void clean();  // 디바이스 관련 초기화된 부분을 clear 
 	bool isKeyDown(SDL_Scancode key);
+	
 private:
 	InputHandler();
 	~InputHandler() {}
 	static InputHandler* s_pInstance;
-
+	const Uint8* m_keystates;
 };
-
 
 typedef InputHandler TheInputHandler;

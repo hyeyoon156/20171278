@@ -47,7 +47,7 @@ public:
 	void update();
 	void handleEvents();
 	void clean();
-	void quit();
+	void quit() { std::cout << "quit" << std::endl; m_bRunning = false; };
 	bool running() { return m_bRunning; }
 
 private:
