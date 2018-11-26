@@ -25,6 +25,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		{
 			return false;
 		}
+		if (!TheTextureManager::Instance()->load("assets/fire.png",
+			"bullet", m_pRenderer))
+		{
+			return false;
+		}
 		
 		//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
 		//SDL_Surface* pTempSurface = IMG_Load("assets/animate.png");
@@ -64,6 +69,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		//m_player->load(300, 300, 128, 82, "animate");
 		//m_enemy->load(0, 0, 128, 82, "animate");
 		m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+		m_gameObjects.push_back(new Fire(new LoaderParams(210, 100, 80, 80, "bullet")));
 		m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
 
 		//m_gameObjects.push_back(m_go);

@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Fire.h"
 #include "GameObject.h"
 
 
